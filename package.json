@@ -1,0 +1,19 @@
+{
+  "name": "cryptax-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corelema/cryptax-frontend.git"
+  },
+  "author": "Corentin Leman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corelema/cryptax-frontend/issues"
+  },
+  "homepage": "https://github.com/corelema/cryptax-frontend#readme"
+}
