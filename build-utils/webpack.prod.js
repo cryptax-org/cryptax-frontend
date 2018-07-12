@@ -1,39 +1,19 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
-  mode: 'development',
+const commonPaths = require('./common-paths');
+
+const config = {
+  mode: 'production',
   entry: {
-    vendor: ['semantic-ui-react'],
-    app: './src/index.js'
+    app: [`${commonPaths.appEntry}/index.js`]
   },
   output: {
-    filename: 'static/[name].[hash].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          test: 'vendor',
-          name: 'vendor',
-          enforce: true
-        }
-      }
-    }
+    filename: 'static/[name].[hash].js'
   },
   devtool: 'source-map',
   module: {
     rules: [
-      {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -65,26 +45,12 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          test: 'vendor',
-          name: 'vendor',
-          enforce: true
-        }
-      }
-    }
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      favicon: 'public/favicon.ico'
-    }),
     new ExtractTextPlugin({
       filename: 'styles/styles.[hash].css',
       allChunks: true
     })
   ]
 };
+
+module.exports = config;
