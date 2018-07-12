@@ -1,9 +1,13 @@
+const express = require('express');
 const path = require('path');
+
 const rootPath = __dirname + '/..';
 
 const configExpress = (app) => {
-  app.get('*', function (req, res) {
-    res.sendFile(path.normalize(rootPath + '/public/index.html'));
+  app.use('/', express.static(`${rootPath}/dist`));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.normalize(`${rootPath}/dist/index.html`));
   });
 }
 

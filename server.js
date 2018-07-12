@@ -2,7 +2,11 @@
 
 const configExpress = require(__dirname + '/server/express');
 
+const port = process.env.PORT || 8080;
+
 start();
+
+console.log(`Listening on port ${port}`);
 
 function start() {
   process.env.NODE_ENV = process.env.NODE_ENV || 'local';
@@ -15,7 +19,7 @@ function start() {
   configExpress(app);
 
   // START THE APP BY LISTENING ON <PORT>
-  app.server = app.listen(process.env.PORT || 8080, (error) => {
+  app.server = app.listen(port, (error) => {
     if (error) {
       console.error('error', error);
     }

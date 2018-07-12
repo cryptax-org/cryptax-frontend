@@ -28,15 +28,11 @@ module.exports = {
   devtool: 'inline-source-map',
   module: {
     rules: [
-
-      // First Rule
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
-
-      // Second Rule
       {
         test: /\.css$/,
         use: [
@@ -54,6 +50,18 @@ module.exports = {
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'initial',
+          test: 'vendor',
+          name: 'vendor',
+          enforce: true
+        }
+      }
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
