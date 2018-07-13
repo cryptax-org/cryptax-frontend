@@ -1,9 +1,12 @@
+import { ConnectedRouter } from 'connected-react-router'
 import importedComponent from 'react-imported-component';
+import { Provider } from 'react-redux'
 import React from 'react';
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import Home from './Home';
-import Loading from './Loading';
+import Home from 'components/Home';
+import Loading from 'components/Loading';
+import store, {history} from 'store';
 
 const AsyncDynamicPAge = importedComponent(
   () => import(/* webpackChunkName:'DynamicPage' */ './DynamicPage'),
@@ -20,15 +23,17 @@ const AsyncNoMatch = importedComponent(
 
 const App = () => {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dynamic" component={AsyncDynamicPAge} />
-          <Route component={AsyncNoMatch} />
-        </Switch>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/dynamic" component={AsyncDynamicPAge} />
+            <Route component={AsyncNoMatch} />
+          </Switch>
+        </div>
+      </ConnectedRouter>
+    </Provider>
   );
 };
 

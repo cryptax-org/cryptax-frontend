@@ -20,6 +20,9 @@ const config = {
       }
     ]
   },
+  resolve: {
+    modules: [commonPaths.appEntry, 'node_modules']
+  },
   optimization: {
     splitChunks: {
       cacheGroups: {
