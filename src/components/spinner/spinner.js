@@ -2,6 +2,6 @@ import React from 'react';
 import { Loader } from 'semantic-ui-react';
 import ReactDelayRender from 'react-delay-render';
 
-const Loading = () => <Loader active size="massive" />;
+const Spinner = () => <Loader active size="massive" />;
 
-export default ReactDelayRender({ delay: 300 })(Loading);
+export default ReactDelayRender({ delay: 300 })(Spinner);

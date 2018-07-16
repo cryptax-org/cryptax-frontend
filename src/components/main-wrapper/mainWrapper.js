@@ -2,23 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Container, Divider, Icon } from 'semantic-ui-react';
 
-import { pullRight, h1 } from './layout.css';
+import { pullRight, h1 } from './mainWrapper.scss';
 
-const Layout = ({ children }) => {
+const MainWrapper = ({ children }) => {
   return (
     <Container>
       <Link to="/">
         <Header as="h1" className={h1}>
-          webpack-for-react
+          Cryptax
         </Header>
       </Link>
       {children}
       <Divider />
       <p className={pullRight}>
-        Made with <Icon name="heart" color="red" /> by Esau Silva
+        Made with <Icon name="heart" color="red" /> by C&C
       </p>
     </Container>
   );
 };
 
-export default Layout;
+export default MainWrapper;

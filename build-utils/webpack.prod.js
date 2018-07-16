@@ -15,7 +15,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -23,7 +23,7 @@ const config = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                importLoaders: 1,
+                importLoaders: 2,
                 camelCase: true,
                 sourceMap: true
               }
@@ -39,6 +39,9 @@ const config = {
                   }
                 }
               }
+            },
+            {
+              loader: "sass-loader"
             }
           ]
         })

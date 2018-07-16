@@ -4,20 +4,20 @@ import { Provider } from 'react-redux'
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from 'components/Home';
-import Loading from 'components/Loading';
+import Home from 'components/home';
+import Spinner from 'components/spinner';
 import store, {history} from 'store';
 
-const AsyncDynamicPAge = importedComponent(
-  () => import(/* webpackChunkName:'DynamicPage' */ './DynamicPage'),
+const AsyncNoMatch = importedComponent(
+  () => import(/* webpackChunkName:'NoMatch' */ 'components/no-match'),
   {
-    LoadingComponent: Loading
+    LoadingComponent: Spinner
   }
 );
-const AsyncNoMatch = importedComponent(
-  () => import(/* webpackChunkName:'NoMatch' */ './NoMatch'),
+const AsyncLoginPage = importedComponent(
+  () => import(/* webpackChunkName:'DynamicPage' */ 'components/login'),
   {
-    LoadingComponent: Loading
+    LoadingComponent: Spinner
   }
 );
 
@@ -28,7 +28,7 @@ const App = () => {
         <div>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/dynamic" component={AsyncDynamicPAge} />
+            <Route exact path="/login" component={AsyncLoginPage} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </div>
