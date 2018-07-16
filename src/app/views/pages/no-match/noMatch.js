@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Header } from 'semantic-ui-react';
 
-import MainWrapper from 'components/main-wrapper';
+import { MainWrapper } from 'layouts';
 
 const NoMatch = () => {
   return (

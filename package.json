@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --env.env=dev",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
-    "serve": "nodemon -V -w server/ server.js"
+    "serve": "nodemon -V -w src/server/ src/server/server.js"
   },
   "repository": {
     "type": "git",

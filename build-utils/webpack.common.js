@@ -21,7 +21,14 @@ const config = {
     ]
   },
   resolve: {
-    modules: [commonPaths.appEntry, 'node_modules']
+    modules: [commonPaths.appEntry, 'node_modules'],
+    alias: {
+      components: commonPaths.components,
+      layouts: commonPaths.layouts,
+      pages: commonPaths.pages,
+      state: commonPaths.state,
+      routes: commonPaths.routes
+    }
   },
   optimization: {
     splitChunks: {

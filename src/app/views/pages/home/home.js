@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import MainWrapper from 'components/main-wrapper';
+import { MainWrapper } from 'layouts';
 
 const Home = () => {
   return (

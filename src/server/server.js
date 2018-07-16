@@ -1,6 +1,6 @@
 'use strict';
 
-const configExpress = require(__dirname + '/server/express');
+const configExpress = require('./express');
 
 const port = process.env.PORT || 8080;
 
