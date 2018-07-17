@@ -15,6 +15,12 @@ const AsyncLoginPage = importedComponent(
     LoadingComponent: Spinner
   }
 );
+const AsyncSignUpPage = importedComponent(
+  () => import('pages/sign-up'),
+  {
+    LoadingComponent: Spinner
+  }
+);
 
 const routes = [
   {
@@ -25,6 +31,11 @@ const routes = [
   {
     path: '/login',
     component: AsyncLoginPage,
+    exact: true,
+  },
+  {
+    path: '/sign-up',
+    component: AsyncSignUpPage,
     exact: true,
   },
   {
