@@ -4,11 +4,13 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk';
 
+import { apiService } from "./middlewares";
 import * as reducers from './ducks';
 
 export const history = createBrowserHistory()
 
 const middlewares = [
+  apiService,
   thunk,
   routerMiddleware(history)
 ];

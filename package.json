@@ -23,6 +23,7 @@
     "autoprefixer": "^8.6.5",
     "axios": "^0.18.0",
     "connected-react-router": "^4.3.0",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "history": "^4.7.2",
     "nodemon": "^1.18.1",

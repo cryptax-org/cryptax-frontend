@@ -12,9 +12,9 @@ const App = () => {
       <ConnectedRouter history={history}>
         <div>
           <Switch>
-            { routes.map( route => (
+            {routes.map(route => (
               <Route key={ route.path } { ...route } />
-            ) ) }
+            ))}
           </Switch>
         </div>
       </ConnectedRouter>
