@@ -1,7 +1,7 @@
-import { signup, login, logout, initializeSession, setRedirectAfterLogin } from './actions';
+import { signUp, login, logout, initializeSession, setRedirectAfterLogin } from './actions';
 
 export {
-  signup,
+  signUp,
   login,
   logout,
   initializeSession,

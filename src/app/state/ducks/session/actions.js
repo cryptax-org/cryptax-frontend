@@ -5,7 +5,7 @@ export const signUp = (body) => ({
   meta: {
     async: true,
     blocking: true,
-    path: `/token`,
+    url: `/users`,
     method: "POST",
     body
   }

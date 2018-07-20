@@ -42,7 +42,7 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         'INVOKE_URL_HOST': JSON.stringify(process.env.INVOKE_URL_HOST),
-        'INVOKE_URL': JSON.stringify(process.env.INVOKE_URL_HOST),
+        'INVOKE_URL': JSON.stringify(process.env.INVOKE_URL),
         'API_KEY': JSON.stringify(process.env.API_KEY),
         'BASE_URL': JSON.stringify(process.env.BASE_URL)
       }

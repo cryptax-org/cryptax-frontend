@@ -5,8 +5,8 @@ import resolveApiKey from 'state/config/resolveApiKey';
 
 const headers = {
   'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'x-api-key': resolveApiKey(resolveApiUrl())
+  'Content-Type': 'application/json'
+  // 'x-api-key': resolveApiKey(resolveApiUrl())
 };
 
 const service = axios.create({

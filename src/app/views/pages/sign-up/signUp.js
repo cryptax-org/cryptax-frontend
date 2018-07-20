@@ -1,22 +1,26 @@
-import { Link } from 'react-router-dom';
-import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import React, { Component } from 'react'
 
 import { sessionThunks } from "state/ducks";
 import styles from './signUp.scss';
 
+//TODO: support auto fill
+
 class SignUp extends Component {
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    termsAndConditions: false
-  };
-}
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      termsAndConditions: false
+    };
+  }
 
   handleChange = (event, { name, value, type, checked }) => {
     const updatedValue = type === 'checkbox' ? checked : value;
@@ -24,6 +28,24 @@ class SignUp extends Component {
   }
 
   handleSubmit = () => {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      termsAndConditions
+    } = this.state;
+
+    const { signUp } = this.props;
+
+    if (termsAndConditions) {
+      signUp({
+        firstName,
+        lastName,
+        email,
+        password
+      });
+    }
   }
 
   handleKeyPress = (event) => {
@@ -119,4 +141,15 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+SignUp.propTypes = {
+  signUp: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ( state ) => ({
+});
+
+const mapDispatchToProps = {
+  signUp: sessionThunks.signUp
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
