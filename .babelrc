@@ -1,4 +1,12 @@
 {
-  "presets": ["env", "react", "stage-1"],
-  "plugins": ["react-hot-loader/babel"]
+  "env": {
+  	"development": {
+      "presets": ["env", "react", "stage-1"],
+      "plugins": ["react-hot-loader/babel"],
+  	},
+  	"test": {
+      "presets": ["env", "react", "stage-1"],
+  		"plugins": ["dynamic-import-node"]
+  	}
+  }
 }

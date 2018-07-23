@@ -9,7 +9,7 @@ import styles from './signUp.scss';
 
 //TODO: support auto fill
 
-class SignUp extends Component {
+export class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -22,12 +22,16 @@ class SignUp extends Component {
     };
   }
 
-  handleChange = (event, { name, value, type, checked }) => {
+  handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+
     const updatedValue = type === 'checkbox' ? checked : value;
     this.setState({ [name]: updatedValue })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
+
     const {
       firstName,
       lastName,
@@ -93,7 +97,7 @@ class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder='Last Name'
                   required
-                  name={lastName}
+                  value={lastName}
                 />
               </Form.Group>
               <Form.Input
@@ -121,7 +125,15 @@ class SignUp extends Component {
               <Form.Checkbox
                 label='I agree to the Terms and Conditions'
                 name='termsAndConditions'
-                onChange={this.handleChange}
+                onChange={(event, data) => this.handleChange(
+                  {
+                    target: {
+                      name: data.name,
+                      type: data.type,
+                      checked: data.checked
+                    }
+                  }
+                )}
                 checked={termsAndConditions}
                 required
               />
