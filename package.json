@@ -10,7 +10,8 @@
     "serve": "nodemon -V -w src/server/ src/server/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:watch:logs": "jest --no-cache --watch --runInBand"
+    "test:watch:logs": "jest --no-cache --watch --runInBand",
+    "ci": "npm run test"
   },
   "repository": {
     "type": "git",
