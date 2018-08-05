@@ -1,4 +1,4 @@
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message } from 'semantic-ui-react'
 import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";

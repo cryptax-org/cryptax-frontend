@@ -4,7 +4,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 export default function withAuthentication(WrappedComponent) {
-  const withAuthentication = (props) => {
+  const WithAuthentication = (props) => {
     if ( !props.isAuthenticated ) {
       return <Redirect to="/login" />;
     }

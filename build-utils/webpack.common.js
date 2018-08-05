@@ -26,6 +26,7 @@ const config = {
       components: commonPaths.components,
       layouts: commonPaths.layouts,
       pages: commonPaths.pages,
+      enhancers: commonPaths.enhancers,
       state: commonPaths.state,
       routes: commonPaths.routes
     }

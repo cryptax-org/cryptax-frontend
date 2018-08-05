@@ -10,6 +10,9 @@ const Home = () => {
       <p>
         <Link to="/login">Login Page</Link>
       </p>
+      <p>
+        <Link to="/transactions">Transactions Page</Link>
+      </p>
     </MainWrapper>
   );
 };

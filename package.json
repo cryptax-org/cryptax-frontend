@@ -30,6 +30,7 @@
       "^components(.*)$": "<rootDir>/src/app/views/components/$1",
       "^layouts(.*)$": "<rootDir>/src/app/views/layouts/$1",
       "^pages(.*)$": "<rootDir>/src/app/views/pages/$1",
+      "^enhancers(.*)$": "<rootDir>/src/app/views/enhancers/$1",
       "^state(.*)$": "<rootDir>/src/app/state/$1",
       "^routes(.*)$": "<rootDir>/src/app/routes/$1",
       ".*.(css|less|sass|scss)$": "<rootDir>/node_modules/jest-css-modules"

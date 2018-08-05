@@ -6,7 +6,7 @@ import { createReducer } from 'state/utils';
 {
   isAuthenticated: bool,
   redirectAfterLogin: string,
-  jwt: tbd
+  jwt: string,
 }
 */
 
@@ -29,6 +29,12 @@ const authReducer = createReducer(false)({
 
 const jwtReducer = createReducer(null)({
   [types.STORE_TOKEN]: (state, action) => action.payload.jwt,
+  [types.LOGOUT]: () => null,
+})
+
+const userReducer = createReducer(null)({
+  [types.SIGNUP_COMPLETED]: (state, action) => action.payload.data,
+  [types.LOGOUT]: () => null,
 })
 
 const redirectAfterLoginReducer = createReducer('/')({
@@ -39,5 +45,6 @@ export default combineReducers({
   isSignedUp: signUpReducer,
   isAuthenticated: authReducer,
   jwt: jwtReducer,
+  user: userReducer,
   redirectAfterLogin: redirectAfterLoginReducer,
 });

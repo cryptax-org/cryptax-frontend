@@ -2,6 +2,7 @@ import importedComponent from 'react-imported-component';
 
 import { Home } from 'pages';
 import { Spinner } from 'components';
+import { withAuthentication } from 'enhancers';
 
 const AsyncNoMatch = importedComponent(
   () => import('pages/no-match'),
@@ -22,6 +23,13 @@ const AsyncSignUpPage = importedComponent(
   }
 );
 
+const AsyncTransactionsPage = importedComponent(
+  () => import('pages/transactions'),
+  {
+    LoadingComponent: Spinner
+  }
+);
+
 const routes = [
   {
     path: '/',
@@ -36,6 +44,11 @@ const routes = [
   {
     path: '/sign-up',
     component: AsyncSignUpPage,
+    exact: true,
+  },
+  {
+    path: '/transactions',
+    component: withAuthentication(AsyncTransactionsPage),
     exact: true,
   },
   {
