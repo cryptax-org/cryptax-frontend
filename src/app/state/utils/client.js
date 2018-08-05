@@ -17,11 +17,12 @@ const service = axios.create({
 // axios.all not currently included axios instance methods
 service.all = requestArray => axios.all(requestArray);
 
-export default (url, method, body) => {
+export default (url, method, body, headers) => {
   const config = {
     url, //TODO: add body in URL for get?
     method,
     data: method !== "GET" ? JSON.stringify(body) : null, //necessary to stringify?
+    headers,
   };
 
   return service.request(config);

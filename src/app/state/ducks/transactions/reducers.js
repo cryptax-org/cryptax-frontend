@@ -10,7 +10,7 @@ import { createReducer } from 'state/utils';
 
 const allReducer = createReducer([])({
   [types.GET_TRANSACTIONS]: () => [], // See how i can return what exists currently
-  [types.GET_TRANSACTIONS_COMPLETED]: () => action.payload.data,
+  [types.GET_TRANSACTIONS_COMPLETED]: (state, action) => action.payload.data,
   [types.GET_TRANSACTIONS_FAILED]: () => [],
   [types.LOGOUT]: () => [],
 });

@@ -8,54 +8,48 @@ import { transactionsThunks } from "state/ducks/transactions";
 import styles from './transactions.scss';
 
 export class Transactions extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      transactions: []
-    };
-  }
-
   componentWillMount() {
-    const { getTransactions } = this.props;
+    const { getTransactions, user, jwt } = this.props;
 
-    getTransactions();
+    getTransactions(user.id, jwt);
   }
 
   render() {
+    const { transactions } = this.props;
+
     return (
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Header</Table.HeaderCell>
-            <Table.HeaderCell>Header</Table.HeaderCell>
-            <Table.HeaderCell>Header</Table.HeaderCell>
+            <Table.HeaderCell>Source</Table.HeaderCell>
+            <Table.HeaderCell>Date</Table.HeaderCell>
+            <Table.HeaderCell>Type</Table.HeaderCell>
+            <Table.HeaderCell>Price</Table.HeaderCell>
+            <Table.HeaderCell>Amount</Table.HeaderCell>
+            <Table.HeaderCell>Currency 1</Table.HeaderCell>
+            <Table.HeaderCell>Currency 2</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>First</Label>
-            </Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
+          {transactions.map(transaction => {
+            return (
+              <Table.Row>
+                <Table.Cell>{transaction.source}</Table.Cell>
+                <Table.Cell>{transaction.date}</Table.Cell>
+                <Table.Cell>{transaction.type}</Table.Cell>
+                <Table.Cell>{transaction.price}</Table.Cell>
+                <Table.Cell>{transaction.amount}</Table.Cell>
+                <Table.Cell>{transaction.currency1}</Table.Cell>
+                <Table.Cell>{transaction.currency2}</Table.Cell>
+              </Table.Row>
+            )
+          })}
         </Table.Body>
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan='3'>
+            <Table.HeaderCell colSpan='7'>
               <Menu floated='right' pagination>
                 <Menu.Item as='a' icon>
                   <Icon name='chevron left' />
@@ -82,6 +76,8 @@ Transactions.propTypes = {
 
 const mapStateToProps = (state) => ({
   transactions: state.transactions.all,
+  jwt: state.session.jwt,
+  user: state.session.user,
 });
 
 const mapDispatchToProps = {

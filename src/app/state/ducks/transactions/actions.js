@@ -1,12 +1,12 @@
 import * as types from './types';
 
 export const getTransactions = (userId, jwt) => ({
-  type: types.LOGIN,
+  type: types.GET_TRANSACTIONS,
   meta: {
     async: true,
     blocking: true,
-    url: `/${userId}/transactions`,
-    method: 'POST',
+    url: `/users/${userId}/transactions`,
+    method: 'GET',
     jwt
   }
 });

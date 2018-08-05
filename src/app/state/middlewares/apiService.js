@@ -7,13 +7,15 @@ const apiService = () => (next) => (action) => {
     return next(action); // Double check that it doesn't need to be extracted to a const
   }
 
-  const {url, method = "GET", body} = action.meta;
+  const {url, method = "GET", body, jwt} = action.meta;
 
   if (!url) {
     throw new Error(`'url' not specified for async action ${action.type}`);
   }
 
-  return client(url, method, body).then(
+  const headers = jwt ? { Authorization: `Bearer ${jwt}` } : null;
+
+  return client(url, method, body, headers).then(
     res => handleResponse(res, action, next),
     err => handleErrors(err, action, next),
   );

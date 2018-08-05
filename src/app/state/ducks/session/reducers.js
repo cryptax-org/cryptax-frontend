@@ -4,9 +4,16 @@ import { createReducer } from 'state/utils';
 
 /* State shape
 {
+  isSignedUp: bool,
   isAuthenticated: bool,
-  redirectAfterLogin: string,
   jwt: string,
+  user: {
+    id: string,
+    email: string,
+    lastName: string,
+    firstName: string,
+  }
+  redirectAfterLogin: string,
 }
 */
 

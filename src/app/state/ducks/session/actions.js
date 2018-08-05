@@ -37,6 +37,9 @@ export const initializeSession = () => ({
   type: types.INITIALIZE,
 });
 
-export const setRedirectAfterLogin = () => ({
+export const setRedirectAfterLogin = (redirectUrl) => ({
   type: types.SET_REDIRECT_AFTER_LOGIN,
+  payload: {
+    redirectUrl
+  }
 });
