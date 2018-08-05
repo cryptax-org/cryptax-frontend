@@ -1,10 +1,10 @@
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
 import React, { Component } from 'react'
 
-import { sessionThunks } from "state/ducks";
+import { sessionThunks } from "state/ducks/session";
 import styles from './signUp.scss';
 
 //TODO: support auto fill
@@ -68,7 +68,17 @@ export class SignUp extends Component {
       termsAndConditions
     } = this.state;
 
-    return (
+    const {
+      isSignedUp,
+      isAuthenticated,
+      redirectURL,
+    } = this.props;
+
+    return isAuthenticated ? (
+      <Redirect to={redirectURL} />
+    ) : isSignedUp ? (
+      <Redirect to='/login' />
+    ) : (
       <div className={styles.signUpForm}>
         <Grid className={styles.grid} textAlign='center' verticalAlign='middle'>
           <Grid.Column className={styles.gridColumn} textAlign='left'>
@@ -157,11 +167,14 @@ SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ( state ) => ({
+const mapStateToProps = (state) => ({
+  isSignedUp: state.session.isSignedUp,
+  isAuthenticated: state.session.isAuthenticated,
+  redirectURL: state.session.redirectAfterLogin,
 });
 
 const mapDispatchToProps = {
-  signUp: sessionThunks.signUp
+  signUp: sessionThunks.signUp,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -1,18 +1,32 @@
 import * as types from './types';
 
-export const signUp = (body) => ({
+export const signUp = (userData) => ({
   type: types.SIGNUP,
   meta: {
     async: true,
     blocking: true,
     url: `/users`,
-    method: "POST",
-    body
+    method: 'POST',
+    body: userData
   }
 });
 
-export const login = () => ({
+export const login = (userLoginData) => ({
   type: types.LOGIN,
+  meta: {
+    async: true,
+    blocking: true,
+    url: '/token',
+    method: 'POST',
+    body: userLoginData
+  }
+});
+
+export const storeToken = (jwt) => ({
+  type: types.STORE_TOKEN,
+  payload: {
+    jwt
+  }
 });
 
 export const logout = () => ({

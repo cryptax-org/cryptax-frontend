@@ -1,1 +1,1 @@
-export { default as session, sessionThunks } from './session';
+export { default as session } from './session';
