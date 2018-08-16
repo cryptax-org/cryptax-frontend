@@ -106,7 +106,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  login: sessionThunks.loginAndStoreToken,
+  login: sessionThunks.loginAndStoreTokenAndGetUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

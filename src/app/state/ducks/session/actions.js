@@ -7,7 +7,7 @@ export const signUp = (userData) => ({
     blocking: true,
     url: `/users`,
     method: 'POST',
-    body: userData
+    body: userData,
   }
 });
 
@@ -16,16 +16,27 @@ export const login = (userLoginData) => ({
   meta: {
     async: true,
     blocking: true,
-    url: '/token',
+    url: `/token`,
     method: 'POST',
-    body: userLoginData
+    body: userLoginData,
+  }
+});
+
+export const getUser = (userId, jwt) => ({
+  type: types.GET_USER,
+  meta: {
+    async: true,
+    blocking: true,
+    url: `/users/${userId}`,
+    method: 'GET',
+    jwt,
   }
 });
 
 export const storeToken = (jwt) => ({
   type: types.STORE_TOKEN,
   payload: {
-    jwt
+    jwt,
   }
 });
 
@@ -40,6 +51,6 @@ export const initializeSession = () => ({
 export const setRedirectAfterLogin = (redirectUrl) => ({
   type: types.SET_REDIRECT_AFTER_LOGIN,
   payload: {
-    redirectUrl
+    redirectUrl,
   }
 });

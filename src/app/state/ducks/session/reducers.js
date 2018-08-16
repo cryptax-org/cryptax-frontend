@@ -39,13 +39,17 @@ const jwtReducer = createReducer(null)({
   [types.LOGOUT]: () => null,
 })
 
-const userReducer = createReducer(null)({
+const userReducer = createReducer({})({
   [types.SIGNUP_COMPLETED]: (state, action) => action.payload.data,
+  [types.LOGIN_COMPLETED]: (state, action) => {return { ...state, id: action.payload.data.id }},
+  [types.GET_USER_COMPLETED]: (state, action) => action.payload.data,
+  [types.GET_USER_FAILED]: () => null,
   [types.LOGOUT]: () => null,
 })
 
 const redirectAfterLoginReducer = createReducer('/')({
   [types.SET_REDIRECT_AFTER_LOGIN]: (state, action) => action.payload.redirectUrl,
+  [types.LOGOUT]: () => '/',
 });
 
 export default combineReducers({

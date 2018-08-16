@@ -1,7 +1,11 @@
 import {
-  getTransactions
+  addTransaction,
+  resetAddTransactionStatus,
+  getTransactions,
 } from './actions';
 
 export default {
-  getTransactions
+  addTransaction,
+  resetAddTransactionStatus,
+  getTransactions,
 };

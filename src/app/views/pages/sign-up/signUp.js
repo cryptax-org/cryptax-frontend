@@ -37,7 +37,7 @@ export class SignUp extends Component {
       lastName,
       email,
       password,
-      termsAndConditions
+      termsAndConditions,
     } = this.state;
 
     const { signUp } = this.props;
@@ -47,7 +47,7 @@ export class SignUp extends Component {
         firstName,
         lastName,
         email,
-        password
+        password,
       });
     }
   }
@@ -151,7 +151,9 @@ export class SignUp extends Component {
                 fluid
                 color='teal'
                 size='large'
-                content='Sign Up'/>
+                type='submit'
+                content='Sign Up'
+              />
             </Form>
             <Message>
               Already have an account? <Link to="/login">Login</Link>

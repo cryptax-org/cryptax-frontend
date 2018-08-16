@@ -2,23 +2,29 @@ import {
   signUp,
   storeToken,
   login,
+  getUser,
   logout,
   initializeSession,
   setRedirectAfterLogin
 } from './actions';
 
-const loginAndStoreToken = (userData) => (dispatch) => {
+const loginAndStoreTokenAndGetUser = (userData) => (dispatch) => {
   dispatch(login({
     email: userData.email,
     password: userData.password
   })).then((response) => {
     dispatch(storeToken(response.data.token));
+
+    dispatch(getUser(
+      response.data.id,
+      response.data.token
+    ))
   })
 }
 
 export default {
   signUp,
-  loginAndStoreToken,
+  loginAndStoreTokenAndGetUser,
   logout,
   initializeSession,
   setRedirectAfterLogin,
