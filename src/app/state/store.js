@@ -6,12 +6,13 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk';
 
-import { apiService } from "./middlewares";
+import { apiService, authInjector } from "./middlewares";
 import * as reducers from './ducks';
 
 export const history = createBrowserHistory()
 
 const middlewares = [
+  authInjector,
   apiService,
   thunk,
   routerMiddleware(history)

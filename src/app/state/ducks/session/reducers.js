@@ -6,7 +6,11 @@ import { createReducer } from 'state/utils';
 {
   isSignedUp: bool,
   isAuthenticated: bool,
-  jwt: string,
+  jwt: {
+    id: string,
+    token: string,
+    refreshToken: string,
+  },
   user: {
     id: string,
     email: string,
@@ -14,6 +18,7 @@ import { createReducer } from 'state/utils';
     firstName: string,
   }
   redirectAfterLogin: string,
+  authRequests: [functions]
 }
 */
 
@@ -24,7 +29,7 @@ const signUpReducer = createReducer(false)({
   [types.LOGOUT]: () => false,
 });
 
-const authReducer = createReducer(false)({
+const isAuthenticatedReducer = createReducer(false)({
   [types.SIGNUP]: () => false,
   [types.SIGNUP_COMPLETED]: () => false,
   [types.SIGNUP_FAILED]: () => false,
@@ -35,7 +40,9 @@ const authReducer = createReducer(false)({
 });
 
 const jwtReducer = createReducer(null)({
-  [types.STORE_TOKEN]: (state, action) => action.payload.jwt,
+  [types.LOGIN_COMPLETED]: (state, action) => action.payload.data,
+  [types.REFRESH_COMPLETED]: (state, action) => action.payload.data,
+  'session/STORE_TOKEN': (state, action) => action.payload.jwt,
   [types.LOGOUT]: () => null,
 })
 
@@ -52,10 +59,15 @@ const redirectAfterLoginReducer = createReducer('/')({
   [types.LOGOUT]: () => '/',
 });
 
+const authRequestsReducer = createReducer([])({
+  
+});
+
 export default combineReducers({
   isSignedUp: signUpReducer,
-  isAuthenticated: authReducer,
+  isAuthenticated: isAuthenticatedReducer,
   jwt: jwtReducer,
   user: userReducer,
   redirectAfterLogin: redirectAfterLoginReducer,
+  authRequests: authRequestsReducer,
 });

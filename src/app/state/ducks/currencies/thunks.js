@@ -1,7 +1,8 @@
 import {
   getCurrencies,
 } from './actions';
+import { withAuthentication } from 'state/ducks/session'
 
 export default {
-  getCurrencies,
+  getCurrencies: withAuthentication(getCurrencies),
 };

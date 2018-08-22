@@ -22,21 +22,24 @@ export const login = (userLoginData) => ({
   }
 });
 
-export const getUser = (userId, jwt) => ({
+export const refresh = (refreshToken) => ({
+  type: types.REFRESH,
+  meta: {
+    async: true,
+    blocking: true,
+    url: `/refresh`,
+    method: 'GET',
+    refreshToken,
+  }
+});
+
+export const getUser = (userId) => ({
   type: types.GET_USER,
   meta: {
     async: true,
     blocking: true,
     url: `/users/${userId}`,
     method: 'GET',
-    jwt,
-  }
-});
-
-export const storeToken = (jwt) => ({
-  type: types.STORE_TOKEN,
-  payload: {
-    jwt,
   }
 });
 

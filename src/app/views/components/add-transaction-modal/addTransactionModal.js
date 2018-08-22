@@ -49,7 +49,7 @@ class AddTransactionModal extends Component {
       open: false,
       date: moment(),
       price: 0,
-      amount: 0,
+      quantity: 0,
       currency1: '',
       currency2: '',
       searchResults: [],
@@ -79,7 +79,7 @@ class AddTransactionModal extends Component {
       date,
       type,
       price,
-      amount,
+      quantity,
       currency1,
       currency2,
     } = this.state;
@@ -88,7 +88,7 @@ class AddTransactionModal extends Component {
       date,
       type,
       price,
-      amount,
+      quantity,
       currency1: currency1.description,
       currency2: currency2.description,
     });
@@ -126,7 +126,7 @@ class AddTransactionModal extends Component {
       date,
       type,
       price,
-      amount,
+      quantity,
       currency1,
       currency2,
       searchResults,
@@ -171,13 +171,13 @@ class AddTransactionModal extends Component {
               fluid
               icon='plus'
               iconPosition='left'
-              label='Amount'
-              name='amount'
+              label='Quantity'
+              name='quantity'
               onChange={this.handleChange}
               placeholder='0'
               required
               type='number'
-              value={amount}
+              value={quantity}
             />
             <div className='required field'>
               <label>From Currency</label>

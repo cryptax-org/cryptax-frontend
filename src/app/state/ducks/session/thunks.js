@@ -7,19 +7,13 @@ import {
   initializeSession,
   setRedirectAfterLogin
 } from './actions';
+import { withAuthentication } from 'state/ducks/session'
 
 const loginAndStoreTokenAndGetUser = (userData) => (dispatch) => {
-  dispatch(login({
+  return dispatch(login({
     email: userData.email,
     password: userData.password
-  })).then((response) => {
-    dispatch(storeToken(response.data.token));
-
-    dispatch(getUser(
-      response.data.id,
-      response.data.token
-    ))
-  })
+  })).then(response => dispatch(withAuthentication(getUser)(response.data.id)))
 }
 
 export default {

@@ -7,13 +7,19 @@ const apiService = () => (next) => (action) => {
     return next(action); // Double check that it doesn't need to be extracted to a const
   }
 
-  const {url, method = "GET", body, jwt} = action.meta;
+  const {
+    url,
+    method = 'GET',
+    body,
+    token,
+    refreshToken
+  } = action.meta;
 
   if (!url) {
     throw new Error(`'url' not specified for async action ${action.type}`);
   }
 
-  const headers = jwt ? { Authorization: `Bearer ${jwt}` } : null;
+  const headers = token || refreshToken ? { Authorization: `Bearer ${token || refreshToken}` } : null;
 
   return client(url, method, body, headers).then(
     res => handleResponse(res, action, next),
@@ -24,11 +30,13 @@ const apiService = () => (next) => (action) => {
 export default apiService;
 
 function handleErrors(err, action, next) {
-  next({
-    type: `${action.type}_FAILED`,
-    payload: err,
-    meta: action.meta,
-  });
+  if (err.response.status !== 401) {
+    next({
+      type: `${action.type}_FAILED`,
+      payload: err,
+      meta: action.meta,
+    });
+  }
 
   return Promise.reject(err);
 }

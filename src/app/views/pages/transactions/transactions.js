@@ -17,20 +17,19 @@ export class Transactions extends Component {
       currenciesTimestamp,
       getTransactions,
       user,
-      jwt
     } = this.props;
 
-    getTransactions(user.id, jwt);
+    getTransactions(user.id);
 
     if (!currencies.lenght) {
-      getCurrencies(jwt);
+      getCurrencies();
     }
   }
 
   addTransactionWrapper = transaction => {
-    const { addTransaction, user, jwt } = this.props;
+    const { addTransaction, user } = this.props;
 
-    addTransaction(user.id, transaction, jwt);
+    addTransaction(user.id, transaction);
   }
 
   render() {
@@ -44,7 +43,7 @@ export class Transactions extends Component {
             <Table.HeaderCell>Date</Table.HeaderCell>
             <Table.HeaderCell>Type</Table.HeaderCell>
             <Table.HeaderCell>Price</Table.HeaderCell>
-            <Table.HeaderCell>Amount</Table.HeaderCell>
+            <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Currency 1</Table.HeaderCell>
             <Table.HeaderCell>Currency 2</Table.HeaderCell>
           </Table.Row>
@@ -58,7 +57,7 @@ export class Transactions extends Component {
                 <Table.Cell>{transaction.date}</Table.Cell>
                 <Table.Cell>{transaction.type}</Table.Cell>
                 <Table.Cell>{transaction.price}</Table.Cell>
-                <Table.Cell>{transaction.amount}</Table.Cell>
+                <Table.Cell>{transaction.quantity}</Table.Cell>
                 <Table.Cell>{transaction.currency1}</Table.Cell>
                 <Table.Cell>{transaction.currency2}</Table.Cell>
               </Table.Row>
@@ -100,7 +99,6 @@ Transactions.propTypes = {
   currenciesTimestamp: PropTypes.object,
   transactions: PropTypes.array,
   addTransactionStatus: PropTypes.number,
-  jwt: PropTypes.string,
   user: PropTypes.object,
 
   addTransaction: PropTypes.func.isRequired,
@@ -113,7 +111,6 @@ const mapStateToProps = (state) => ({
   currenciesTimestamp: state.currencies.timestamp,
   transactions: state.transactions.all,
   addTransactionStatus: state.transactions.addTransactionStatus,
-  jwt: state.session.jwt,
   user: state.session.user,
 });
 
