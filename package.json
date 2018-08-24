@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
     "dev": "webpack-dev-server --env.env=dev",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
     "serve": "nodemon -V -w src/server/ src/server/server.js",
+    "start": "node src/server/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:watch:logs": "jest --no-cache --watch --runInBand",

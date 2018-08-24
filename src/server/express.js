@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const rootPath = __dirname + '/..';
+const rootPath = __dirname + '/../..';
 
 const configExpress = (app) => {
   app.use('/', express.static(`${rootPath}/dist`));

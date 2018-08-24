@@ -4,6 +4,10 @@
       "presets": ["env", "react", "stage-1"],
       "plugins": ["react-hot-loader/babel"],
   	},
+    "production": {
+      "presets": ["env", "react", "stage-1"],
+      "plugins": ["react-hot-loader/babel"],
+    },
   	"test": {
       "presets": ["env", "react", "stage-1"],
   		"plugins": ["dynamic-import-node"]
