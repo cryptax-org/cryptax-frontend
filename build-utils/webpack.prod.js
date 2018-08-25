@@ -3,6 +3,8 @@ const webpack = require('webpack');
 
 const commonPaths = require('./common-paths');
 
+require('dotenv').config({path: `${commonPaths.projectRoot}/.env.production`});
+
 const config = {
   mode: 'production',
   entry: {
@@ -49,6 +51,12 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'INVOKE_URL': JSON.stringify(process.env.INVOKE_URL),
+        'BASE_URL': JSON.stringify(process.env.BASE_URL)
+      }
+    }),
     new ExtractTextPlugin({
       filename: 'styles/styles.[hash].css',
       allChunks: true
