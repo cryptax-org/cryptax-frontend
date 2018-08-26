@@ -14,7 +14,7 @@ const service = axios.create({
   headers,
 });
 
-// axios.all not currently included axios instance methods
+// axios.all not currently included in axios instance methods
 service.all = requestArray => axios.all(requestArray);
 
 export default (url, method, body, headers) => {
