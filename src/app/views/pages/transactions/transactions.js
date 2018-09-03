@@ -6,8 +6,9 @@ import React, { Component } from 'react';
 
 import { AddTransactionModal } from 'components';
 import { currenciesThunks } from 'state/ducks/currencies';
-import { transactionsThunks } from 'state/ducks/transactions';
 import styles from './transactions.scss';
+import { transactionsThunks } from 'state/ducks/transactions';
+import { withResponsiveWrapper } from 'enhancers';
 
 export class Transactions extends Component {
   componentWillMount() {
@@ -102,8 +103,9 @@ Transactions.propTypes = {
   user: PropTypes.object,
 
   addTransaction: PropTypes.func.isRequired,
-  resetAddTransactionStatus: PropTypes.func.isRequired,
+  getCurrencies: PropTypes.func.isRequired,
   getTransactions: PropTypes.func.isRequired,
+  resetAddTransactionStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -121,4 +123,4 @@ const mapDispatchToProps = {
   resetAddTransactionStatus: transactionsThunks.resetAddTransactionStatus,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transactions);
+export default withResponsiveWrapper(connect(mapStateToProps, mapDispatchToProps)(Transactions));
