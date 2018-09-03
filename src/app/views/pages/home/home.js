@@ -17,11 +17,11 @@ import { ResponsiveWrapper } from 'layouts';
 import { sessionThunks } from 'state/ducks/session';
 import { withResponsiveWrapper } from 'enhancers';
 
-const Home = () => {
+const Home = ({ mobile }) => {
 
 return (
   <div>
-    <HomeHeader />
+    <HomeHeader mobile={mobile}/>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container centered stackable verticalAlign='middle'>
         <Grid.Column width={12}>
