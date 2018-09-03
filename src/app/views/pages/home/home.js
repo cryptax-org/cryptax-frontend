@@ -29,21 +29,21 @@ return (
             We Calculate the taxes you owe on cryptocurrency transactions
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            You enter the transaction you made withing the year, we do the rest!
+            You enter the transaction you made within the year, we do the rest!
           </p>
           <Header as='h3' style={{ fontSize: '2em' }}>
             We can import transaction logs from many different exchanges
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            Binance, Coinbase, or even Kucoin, the all allow you to export all your transaction in a csv-like file,
+            Binance, Coinbase, or even Kucoin, they all allow you to export all your transaction in a csv-like file,
             just import it in our webapp, and you're good to go!
           </p>
           <Header as='h3' style={{ fontSize: '2em' }}>
             Get a detailed report of what you owe
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            We generate a detailed report with all the informations you need to file your taxes,
-            just fill in the boxed with your favorite tax filer, and you are DONE!
+            We generate a detailed report with all the information you need to file your taxes,
+            just fill in the boxes with your favorite tax filer, and you are DONE!
           </p>
         </Grid.Column>
       </Grid>
@@ -53,7 +53,7 @@ return (
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              This is FREE
+              This is FREE!
             </Header>
             <p style={{ fontSize: '1.33em' }}>
               Yes, you read that right! Cryptax is absolutely free and is surviving thanks to donations.
@@ -64,7 +64,7 @@ return (
               Make a donation
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Any little bit help, and every cent we receive will be used to pay for hosting the website and develop it further.
+              Any little bit helps, and every cent we receive will be used to pay for hosting the website and developing it further.
             </p>
             <Button as={Link} to='./donate' size='huge'>Donate</Button>
           </Grid.Column>
@@ -74,10 +74,10 @@ return (
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
-          Open sources!
+          Open source!
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          This website is fully open sources and can be found in our <a href='https://github.com/cryptax-org' target='_blank'>Github.</a>
+          This website is fully open source and can be found in our <a href='https://github.com/cryptax-org' target='_blank'>Github.</a>
         </p>
       </Container>
     </Segment>
