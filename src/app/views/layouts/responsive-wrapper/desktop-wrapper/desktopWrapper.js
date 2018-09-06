@@ -5,10 +5,11 @@ import {
   Responsive,
   Segment,
   Visibility,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import styles from './desktopWrapper.scss';
 
 class DesktopWrapper extends Component {
   state = {}
@@ -34,9 +35,9 @@ class DesktopWrapper extends Component {
             onBottomPassedReverse={this.hideFixedMenu}
           >
             <Segment
+              className={styles.headerSegment}
               inverted
               textAlign='center'
-              style={{ padding: '1em 0em' }}
               vertical
             >
               <Menu
@@ -57,7 +58,7 @@ class DesktopWrapper extends Component {
                     ) : (
                       <div>
                         <Button content='Login' as={Link} to='/login' inverted={!fixed} />
-                        <Button content='Sign Up' as={Link} to='/sign-up' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} />
+                        <Button className={styles.buttonNotFirst} content='Sign Up' as={Link} to='/sign-up' inverted={!fixed} primary={fixed} />
                       </div>
                     )}
                   </Menu.Item>

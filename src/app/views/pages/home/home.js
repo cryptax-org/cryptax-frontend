@@ -15,55 +15,54 @@ import React from 'react';
 import { HomeHeader } from 'components';
 import { ResponsiveWrapper } from 'layouts';
 import { sessionThunks } from 'state/ducks/session';
+import styles from './home.scss';
 import { withResponsiveWrapper } from 'enhancers';
 
-const Home = ({ mobile }) => {
-
-return (
+const Home = ({ mobile }) => (
   <div>
     <HomeHeader mobile={mobile}/>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment className={styles.firstSection} vertical>
       <Grid container centered stackable verticalAlign='middle'>
         <Grid.Column width={12}>
-          <Header as='h3' style={{ fontSize: '2em' }}>
+          <Header as='h3' size='huge'>
             We Calculate the taxes you owe on cryptocurrency transactions
           </Header>
-          <p style={{ fontSize: '1.33em' }}>
+          <p className={styles.paragraph}>
             You enter the transaction you made within the year, we do the rest!
           </p>
-          <Header as='h3' style={{ fontSize: '2em' }}>
+          <Header as='h3' size='huge'>
             We can import transaction logs from many different exchanges
           </Header>
-          <p style={{ fontSize: '1.33em' }}>
+          <p className={styles.paragraph}>
             Binance, Coinbase, or even Kucoin, they all allow you to export all your transaction in a csv-like file,
             just import it in our webapp, and you're good to go!
           </p>
-          <Header as='h3' style={{ fontSize: '2em' }}>
+          <Header as='h3' size='huge'>
             Get a detailed report of what you owe
           </Header>
-          <p style={{ fontSize: '1.33em' }}>
+          <p className={styles.paragraph}>
             We generate a detailed report with all the information you need to file your taxes,
             just fill in the boxes with your favorite tax filer, and you are DONE!
           </p>
         </Grid.Column>
       </Grid>
     </Segment>
-    <Segment style={{ padding: '0em' }} vertical>
+    <Segment className={styles.priceSegment} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+          <Grid.Column className={styles.gridColumn}>
+            <Header as='h3' size='huge'>
               This is FREE!
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
+            <p className={styles.paragraph}>
               Yes, you read that right! Cryptax is absolutely free and is surviving thanks to donations.
             </p>
           </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+          <Grid.Column className={styles.gridColumn}>
+            <Header as='h3' size='huge'>
               Make a donation
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
+            <p className={styles.paragraph}>
               Any little bit helps, and every cent we receive will be used to pay for hosting the website and developing it further.
             </p>
             <Button as={Link} to='./donate' size='huge'>Donate</Button>
@@ -71,17 +70,17 @@ return (
         </Grid.Row>
       </Grid>
     </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment className={styles.openSourceSegment} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
+        <Header as='h3' size='huge'>
           Open source!
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+        <p className={styles.paragraph}>
           This website is fully open source and can be found in our <a href='https://github.com/cryptax-org' target='_blank'>Github.</a>
         </p>
       </Container>
     </Segment>
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
+    <Segment className={styles.footerSegment} inverted vertical>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
@@ -106,7 +105,6 @@ return (
     </Segment>
   </div>
 );
-}
 
 Home.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,

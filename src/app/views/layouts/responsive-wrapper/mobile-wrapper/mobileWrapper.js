@@ -6,10 +6,11 @@ import {
   Responsive,
   Segment,
   Sidebar,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import styles from './mobileWrapper.scss';
 
 class MobileWrapper extends Component {
   state = {}
@@ -45,14 +46,14 @@ class MobileWrapper extends Component {
             </Sidebar>
 
             <Sidebar.Pusher
+              className={styles.pageSegment}
               dimmed={sidebarOpened}
               onClick={this.handlePusherClick}
-              style={{ minHeight: '100vh' }}
             >
               <Segment
+                className={styles.headerSegment}
                 inverted
                 textAlign='center'
-                style={{ padding: '1em 0em' }}
                 vertical
               >
                 <Container>
@@ -66,7 +67,7 @@ class MobileWrapper extends Component {
                       ) : (
                         <div>
                           <Button content='Login' as={Link} to='/login' inverted />
-                          <Button content='Sign Up' as={Link} to='/sign-up' inverted style={{ marginLeft: '0.5em' }} />
+                          <Button className={styles.buttonNotFirst} content='Sign Up' as={Link} to='/sign-up' inverted />
                         </div>
                       )}
                     </Menu.Item>

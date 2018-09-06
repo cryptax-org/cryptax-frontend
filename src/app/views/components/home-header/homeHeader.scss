@@ -1,0 +1,40 @@
+.wrapper-segment {
+  padding: 1em 0em !important;
+
+  &.desktop {
+    min-height: 620px !important;
+  }
+
+  &.mobile {
+    min-height: 270px !important;
+  }
+}
+
+.title {
+  font-weight: !important;
+  margin-bottom: 0 !important;
+
+  &.desktop {
+    font-size: 4em !important;
+    margin-top: 3em !important;
+  }
+
+  &.mobile {
+    font-size: 2em !important;
+    margin-top: 1.5em !important;
+  }
+}
+
+.sub-title {
+  font-weight: !important;
+
+  &.desktop {
+    font-size: 1.7em !important;
+    margin-top: 1.5em !important;
+  }
+
+  &.mobile {
+    font-size: 1.5em !important;
+    margin-top: 0.5em !important;
+  }
+}
