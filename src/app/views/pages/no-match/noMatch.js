@@ -1,15 +1,15 @@
 import React from 'react';
 import { Icon, Header } from 'semantic-ui-react';
 
-import { MainWrapper } from 'layouts';
+import { withResponsiveWrapper } from 'enhancers';
 
 const NoMatch = () => {
   return (
-    <MainWrapper>
+    <div>
       <Icon name="minus circle" size="big" />
       <strong>Page not found!</strong>
-    </MainWrapper>
+    </div>
   );
 };
 
-export default NoMatch;
+export default withResponsiveWrapper(NoMatch);

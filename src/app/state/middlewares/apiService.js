@@ -11,6 +11,7 @@ const apiService = () => (next) => (action) => {
     url,
     method = 'GET',
     body,
+    params,
     token,
     refreshToken
   } = action.meta;
@@ -21,7 +22,7 @@ const apiService = () => (next) => (action) => {
 
   const headers = token || refreshToken ? { Authorization: `Bearer ${token || refreshToken}` } : null;
 
-  return client(url, method, body, headers).then(
+  return client(url, method, body, params, headers).then(
     res => handleResponse(res, action, next),
     err => handleErrors(err, action, next),
   );

@@ -43,6 +43,23 @@ export const getUser = (userId) => ({
   }
 });
 
+export const authorizeUser = (userId, welcomeToken) => ({
+  type: types.AUTHORIZE_USER,
+  meta: {
+    async: true,
+    blocking: true,
+    url: `/users/${userId}/allow`,
+    method: 'GET',
+    params: {
+      token: welcomeToken
+    },
+  }
+});
+
+export const resetAuthorize = () => ({
+  type: types.RESET_AUTHORIZE,
+});
+
 export const logout = () => ({
   type: types.LOGOUT,
 });

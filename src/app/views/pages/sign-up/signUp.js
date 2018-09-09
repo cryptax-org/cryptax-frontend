@@ -166,6 +166,9 @@ export class SignUp extends Component {
 }
 
 SignUp.propTypes = {
+  isSignedUp: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  redirectURL: PropTypes.string.isRequired,
   signUp: PropTypes.func.isRequired,
 };
 

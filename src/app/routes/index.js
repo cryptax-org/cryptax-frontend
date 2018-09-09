@@ -30,6 +30,13 @@ const AsyncTransactionsPage = importedComponent(
   }
 );
 
+const AsyncVerifyUserPage = importedComponent(
+  () => import('pages/verify-user'),
+  {
+    LoadingComponent: Spinner
+  }
+);
+
 const routes = [
   {
     path: '/',
@@ -49,6 +56,11 @@ const routes = [
   {
     path: '/transactions',
     component: withAuthentication(AsyncTransactionsPage),
+    exact: true,
+  },
+  {
+    path: '/verify-user/:userId/:token',
+    component: AsyncVerifyUserPage,
     exact: true,
   },
   {
