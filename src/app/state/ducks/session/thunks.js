@@ -20,8 +20,8 @@ const loginAndStoreTokenAndGetUser = (userData) => (dispatch) => {
   })).then(response => dispatch(withAuthentication(getUser)(response.data.id)))
 }
 
-const authorizeUserAndRedirect = () => (dispatch) => {
-  return dispatch(authorizeUser()).then(response => {
+const authorizeUserAndRedirect = (userId, welcomeToken) => (dispatch) => {
+  return dispatch(authorizeUser(userId, welcomeToken)).then(response => {
     setTimeout(() => {
       dispatch(push('/login'));
       dispatch(resetAuthorize());
