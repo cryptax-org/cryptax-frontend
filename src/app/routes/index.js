@@ -10,6 +10,12 @@ const AsyncNoMatch = importedComponent(
     LoadingComponent: Spinner
   }
 );
+const AsyncAboutPage = importedComponent(
+  () => import('pages/about'),
+  {
+    LoadingComponent: Spinner
+  }
+);
 const AsyncLoginPage = importedComponent(
   () => import('pages/login'),
   {
@@ -41,6 +47,11 @@ const routes = [
   {
     path: '/',
     component: Home,
+    exact: true,
+  },
+  {
+    path: '/about',
+    component: AsyncAboutPage,
     exact: true,
   },
   {

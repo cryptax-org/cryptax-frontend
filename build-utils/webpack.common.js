@@ -17,12 +17,28 @@ const config = {
         test: /\.(js)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'assets/img/[name].[hash].[ext]'
+            }
+          },
+          {
+            loader: 'image-webpack-loader'
+          }
+        ]
       }
     ]
   },
   resolve: {
     modules: [commonPaths.appEntry, 'node_modules'],
     alias: {
+      assets: commonPaths.assets,
       components: commonPaths.components,
       layouts: commonPaths.layouts,
       pages: commonPaths.pages,

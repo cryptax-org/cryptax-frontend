@@ -1,0 +1,13 @@
+.paragraph {
+  font-size: 1.33em;
+}
+
+.add-icon {
+  cursor: pointer;
+  transform: scale(1);
+  transition: opacity 0.2s, color 0.2s, transform 0.2s;
+}
+
+.add-icon:hover {
+  transform: scale(1.5);
+}

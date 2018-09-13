@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 import React from 'react';
 
 import { HomeHeader } from 'components';
-import { ResponsiveWrapper } from 'layouts';
 import { sessionThunks } from 'state/ducks/session';
 import styles from './home.scss';
 import { withResponsiveWrapper } from 'enhancers';

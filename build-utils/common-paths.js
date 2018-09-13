@@ -5,6 +5,7 @@ module.exports = {
   projectRoot: PROJECT_ROOT,
   outputPath: path.join(PROJECT_ROOT, 'dist'),
   appEntry: path.join(PROJECT_ROOT, 'src/client'),
+  assets: path.join(PROJECT_ROOT, 'src/assets'),
   components: path.join(PROJECT_ROOT, 'src/app/views/components'),
   layouts: path.join(PROJECT_ROOT, 'src/app/views/layouts'),
   pages: path.join(PROJECT_ROOT, 'src/app/views/pages'),
