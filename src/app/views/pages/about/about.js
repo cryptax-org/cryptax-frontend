@@ -54,7 +54,12 @@ const About = ({ mobile }) => (
         <Grid.Column verticalAlign='middle' width={9}>
           <Segment color='blue' textAlign='left'>
             <p className={styles.paragraph}>
-              Corentin is a frontend Javascript developer
+              Corentin is a Javascript developer focusing on frontend technologies. He also plays with Node.js when has some extra free
+              time. His favorite frontend framework? React, hands down!
+            </p>
+            <p className={styles.paragraph}>
+              When he is not developing, you can find Corentin cooking and baking french goods. His co-workers always find retros more
+              joyful with a stack of freshly made stroopwafles!
             </p>
             <Icon.Group className={styles.addIcon} size='large' onClick={openLink.bind(null, 'https://www.linkedin.com/in/corentinleman')}>
               <Icon name='linkedin' />
