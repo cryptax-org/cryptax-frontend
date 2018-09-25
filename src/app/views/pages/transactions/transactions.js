@@ -25,13 +25,22 @@ export class Transactions extends Component {
     if (!currencies.lenght) {
       getCurrencies();
     }
-  }
+  };
 
   addTransactionWrapper = transaction => {
     const { addTransaction, user } = this.props;
 
     addTransaction(user.id, transaction);
-  }
+  };
+
+  onChangeFile = event => {
+    const { files } = event.target;
+    const { addTransactionsFile, user } = this.props;
+
+    Object.values(files).map(file => {
+      addTransactionsFile(user.id, file, 'binance');
+    });
+  };
 
   render() {
     const { currencies, transactions, addTransactionStatus } = this.props;
@@ -81,6 +90,22 @@ export class Transactions extends Component {
                   <Icon name='chevron right' />
                 </Menu.Item>
               </Menu>
+              <Button
+                as='label'
+                floated='right'
+                htmlFor='upload'
+                icon
+                labelPosition='left'
+                primary size='large'
+              >
+                <Icon name='upload' /> Import Transactions
+                <input
+                    hidden
+                    id='upload'
+                    multiple
+                    type="file"
+                    onChange={this.onChangeFile} />
+              </Button>
               <AddTransactionModal
                 addTransaction={this.addTransactionWrapper}
                 addTransactionStatus={addTransactionStatus}
@@ -92,8 +117,8 @@ export class Transactions extends Component {
         </Table.Footer>
       </Table>
     )
-  }
-}
+  };
+};
 
 Transactions.propTypes = {
   currencies: PropTypes.array,
@@ -103,6 +128,7 @@ Transactions.propTypes = {
   user: PropTypes.object,
 
   addTransaction: PropTypes.func.isRequired,
+  addTransactionsFile: PropTypes.func.isRequired,
   getCurrencies: PropTypes.func.isRequired,
   getTransactions: PropTypes.func.isRequired,
   resetAddTransactionStatus: PropTypes.func.isRequired,
@@ -119,6 +145,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getCurrencies: currenciesThunks.getCurrencies,
   addTransaction: transactionsThunks.addTransaction,
+  addTransactionsFile: transactionsThunks.addTransactionsFile,
   getTransactions: transactionsThunks.getTransactions,
   resetAddTransactionStatus: transactionsThunks.resetAddTransactionStatus,
 };

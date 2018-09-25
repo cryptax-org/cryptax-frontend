@@ -10,10 +10,10 @@ import './addTransactionModal.scss';
 import { PostTransactionEnum } from 'state/ducks/transactions';
 
 class NestedModal extends Component {
-  state = { open: false }
+  state = { open: false };
 
-  open = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  open = () => this.setState({ open: true });
+  close = () => this.setState({ open: false });
 
   render() {
     const { open } = this.state
@@ -34,12 +34,12 @@ class NestedModal extends Component {
         </Modal.Actions>
       </Modal>
     )
-  }
+  };
 }
 
 NestedModal.propTypes = {
   addTransactionStatus: PropTypes.number.isRequired,
-}
+};
 
 class AddTransactionModal extends Component {
   constructor(props) {
@@ -55,20 +55,20 @@ class AddTransactionModal extends Component {
       searchResults: [],
       currentFieldSearched: ''
     }
-  }
+  };
 
-  open = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  open = () => this.setState({ open: true });
+  close = () => this.setState({ open: false });
 
   handleChange = e => {
     const { name, value } = e.target;
 
     this.setState({ [name]: value })
-  }
+  };
 
   handleDateChange = date => {
     this.setState({ date })
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -92,7 +92,7 @@ class AddTransactionModal extends Component {
       currency1: currency1.description,
       currency2: currency2.description,
     });
-  }
+  };
 
   resetSearch = () => this.setState({ searchResults: [], currency1: '' })
 
@@ -111,12 +111,12 @@ class AddTransactionModal extends Component {
       const { sourceCurrencies } = this.props;
 
       this.setState({ [name]: { title: value }})
-      const re = new RegExp(_.escapeRegExp(value), 'i')
-      const isMatch = result => re.test(result.title) || re.test(result.description)
+      const re = new RegExp(_.escapeRegExp(value), 'i');
+      const isMatch = result => re.test(result.title) || re.test(result.description);
 
-      this.setState({ searchResults: sourceCurrencies.filter(isMatch) })
+      this.setState({ searchResults: sourceCurrencies.filter(isMatch) });
     }
-  }
+  };
 
   render() {
     const { floated, addTransactionStatus } = this.props;
@@ -141,7 +141,7 @@ class AddTransactionModal extends Component {
         onClose={this.close}
         trigger={
           <Button floated={floated} icon labelPosition='left' primary size='large'>
-            <Icon name='plus' /> Add Transaction
+            <Icon name='plus' /> Add Transaction Manually
           </Button>
         }
       >
@@ -227,8 +227,8 @@ class AddTransactionModal extends Component {
         </Modal.Actions>
       </Modal>
     );
-  }
-}
+  };
+};
 
 AddTransactionModal.propTypes = {
   addTransaction: PropTypes.func.isRequired,

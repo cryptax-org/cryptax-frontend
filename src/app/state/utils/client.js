@@ -15,11 +15,13 @@ const service = axios.create({
 // axios.all not currently included in axios instance methods
 service.all = requestArray => axios.all(requestArray);
 
-export default (url, method, body, params, headers) => {
+export default (url, method, body, params, headers, isForm) => {
   const config = {
     url, //TODO: add body in URL for get?
     method,
-    data: method !== "GET" ? JSON.stringify(body) : null, //necessary to stringify?
+    data: method !== "GET"
+      ? !isForm ? JSON.stringify(body) : body
+      : null,
     params,
     headers,
   };

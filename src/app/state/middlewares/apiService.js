@@ -8,21 +8,23 @@ const apiService = () => (next) => (action) => {
   }
 
   const {
-    url,
-    method = 'GET',
     body,
+    headers,
+    isForm,
+    method = 'GET',
     params,
+    refreshToken,
     token,
-    refreshToken
+    url,
   } = action.meta;
 
   if (!url) {
     throw new Error(`'url' not specified for async action ${action.type}`);
   }
 
-  const headers = token || refreshToken ? { Authorization: `Bearer ${token || refreshToken}` } : null;
+  const requestHeaders = token || refreshToken ? { Authorization: `Bearer ${token || refreshToken}`, ...headers } : headers;
 
-  return client(url, method, body, params, headers).then(
+  return client(url, method, body, params, requestHeaders, isForm).then(
     res => handleResponse(res, action, next),
     err => handleErrors(err, action, next),
   );
