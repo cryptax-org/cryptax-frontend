@@ -15,7 +15,7 @@
     "ci": "npm run test"
   },
   "engines": {
-    "node": "~8 <9"
+    "node": "~8"
   },
   "repository": {
     "type": "git",
