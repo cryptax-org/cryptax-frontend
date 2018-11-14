@@ -9,7 +9,7 @@ const apiService = () => (next) => (action) => {
 
   const {
     body,
-    headers,
+    headers = null,
     isForm,
     method = 'GET',
     params,
