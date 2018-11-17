@@ -48,8 +48,8 @@ class AddTransactionModal extends Component {
     this.state = {
       open: false,
       date: moment(),
-      price: 0,
-      quantity: 0,
+      price: '',
+      quantity: '',
       currency1: '',
       currency2: '',
       searchResults: [],
@@ -148,59 +148,59 @@ class AddTransactionModal extends Component {
         <Modal.Header>Add A Transaction</Modal.Header>
         <Modal.Content>
           <Form id={formName} size='large' onSubmit={this.handleSubmit}>
-            <div className='required field'>
-              <label>Transaction date and time</label>
-              <Datetime
-                value={date}
-                onChange={this.handleDateChange}
-              />
-            </div>
             <Form.Input
-              fluid
+              control={Datetime}
+              label='Transaction date and time'
+              onChange={this.handleDateChange}
+              required
+              value={date}
+            />
+            <Form.Input
               icon='dollar'
               iconPosition='left'
               label='Price'
               name='price'
               onChange={this.handleChange}
-              placeholder='0'
+              placeholder='Price'
               required
               type='number'
               value={price}
             />
             <Form.Input
-              fluid
               icon='plus'
               iconPosition='left'
               label='Quantity'
               name='quantity'
               onChange={this.handleChange}
-              placeholder='0'
+              placeholder='Quantity'
               required
               type='number'
               value={quantity}
             />
-            <div className='required field'>
-              <label>From Currency</label>
-              <Search
-                input={{ icon: 'search', iconPosition: 'left' }}
-                name='currency1'
-                onResultSelect={this.handleResultSelect}
-                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                results={searchResults}
-                value={currency1.title}
+            <Form.Input
+              control={Search}
+              placeholder='From Currency'
+              input={{ icon: 'search', iconPosition: 'left' }}
+              label='From Currency'
+              name='currency1'
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+              required
+              results={searchResults}
+              value={currency1.title}
               />
-            </div>
-            <div className='required field'>
-              <label>To Currency</label>
-              <Search
-                input={{ icon: 'search', iconPosition: 'left' }}
-                name='currency2'
-                onResultSelect={this.handleResultSelect}
-                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                results={searchResults}
-                value={currency2.title}
-              />
-            </div>
+            <Form.Input
+              control={Search}
+              placeholder='To Currency'
+              input={{ icon: 'search', iconPosition: 'left' }}
+              label='To Currency'
+              name='currency2'
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+              required
+              results={searchResults}
+              value={currency2.title}
+            />
           </Form>
         </Modal.Content>
         <Modal.Actions>
