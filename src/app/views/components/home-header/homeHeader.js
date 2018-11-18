@@ -12,8 +12,6 @@ import styles from './homeHeader.scss';
 const HomeHeader = ({ mobile }) => {
   const responsive = mobile ? styles.mobile : styles.desktop;
 
-  console.log(styles)
-
   return (
     <Segment
       className={`${styles.wrapperSegment} ${responsive}`}

@@ -3,7 +3,7 @@
  * @return {string} api url
  */
 const resolveApiUrl = () => {
-  const host = window.location.hostname;
+  const host = window.location.hostname.split(`www.`).pop();
   const urls = {
     localhost: process.env.INVOKE_URL,
     [process.env.BASE_URL]: process.env.INVOKE_URL
