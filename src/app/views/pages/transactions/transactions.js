@@ -1,4 +1,4 @@
-import { Button, Table, Label, Menu, Icon } from 'semantic-ui-react';
+import { Button, Container, Table, Label, Menu, Icon } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
@@ -46,76 +46,103 @@ export class Transactions extends Component {
     const { currencies, transactions, addTransactionStatus } = this.props;
 
     return (
-      <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Source</Table.HeaderCell>
-            <Table.HeaderCell>Date</Table.HeaderCell>
-            <Table.HeaderCell>Type</Table.HeaderCell>
-            <Table.HeaderCell>Price</Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell>Currency 1</Table.HeaderCell>
-            <Table.HeaderCell>Currency 2</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+      <Container className={styles.exchange}>
+        <Table celled color='red' selectable sortable>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Source</Table.HeaderCell>
+              <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell>Type</Table.HeaderCell>
+              <Table.HeaderCell>Price</Table.HeaderCell>
+              <Table.HeaderCell>Quantity</Table.HeaderCell>
+              <Table.HeaderCell>Currency 1</Table.HeaderCell>
+              <Table.HeaderCell>Currency 2</Table.HeaderCell>
+              <Table.HeaderCell />
+            </Table.Row>
+          </Table.Header>
 
-        <Table.Body>
-          {transactions.map(transaction => {
-            return (
-              <Table.Row key={transaction.id}>
-                <Table.Cell>{transaction.source}</Table.Cell>
-                <Table.Cell>{transaction.date}</Table.Cell>
-                <Table.Cell>{transaction.type}</Table.Cell>
-                <Table.Cell>{transaction.price}</Table.Cell>
-                <Table.Cell>{transaction.quantity}</Table.Cell>
-                <Table.Cell>{transaction.currency1}</Table.Cell>
-                <Table.Cell>{transaction.currency2}</Table.Cell>
-              </Table.Row>
-            )
-          })}
-        </Table.Body>
+          <Table.Body>
+            {transactions.map(transaction => {
+              return (
+                <Table.Row key={transaction.id}>
+                  <Table.Cell>{transaction.source}</Table.Cell>
+                  <Table.Cell>{transaction.date}</Table.Cell>
+                  <Table.Cell>{transaction.type}</Table.Cell>
+                  <Table.Cell>{transaction.price}</Table.Cell>
+                  <Table.Cell>{transaction.quantity}</Table.Cell>
+                  <Table.Cell>{transaction.currency1}</Table.Cell>
+                  <Table.Cell>{transaction.currency2}</Table.Cell>
+                  <Table.Cell collapsing>
+                    <Button
+                      animated='vertical'
+                      floated='right'
+                      htmlFor='edit'
+                      size='mini'
+                    >
+                      <Button.Content hidden>Edit</Button.Content>
+                      <Button.Content visible>
+                        <Icon name='edit' />
+                      </Button.Content>
+                    </Button>
+                    <Button
+                      animated='vertical'
+                      color='red'
+                      floated='right'
+                      htmlFor='edit'
+                      size='mini'
+                    >
+                      <Button.Content hidden>Delete</Button.Content>
+                      <Button.Content visible>
+                        <Icon name='delete' />
+                      </Button.Content>
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
+              )
+            })}
+          </Table.Body>
 
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan='7'>
-              <Menu floated='right' pagination>
-                <Menu.Item as='a' icon>
-                  <Icon name='chevron left' />
-                </Menu.Item>
-                <Menu.Item as='a'>1</Menu.Item>
-                <Menu.Item as='a'>2</Menu.Item>
-                <Menu.Item as='a'>3</Menu.Item>
-                <Menu.Item as='a'>4</Menu.Item>
-                <Menu.Item as='a' icon>
-                  <Icon name='chevron right' />
-                </Menu.Item>
-              </Menu>
-              <Button
-                as='label'
-                floated='right'
-                htmlFor='upload'
-                icon
-                labelPosition='left'
-                primary size='large'
-              >
-                <Icon name='upload' /> Import Transactions
-                <input
-                    hidden
-                    id='upload'
-                    multiple
-                    type="file"
-                    onChange={this.onChangeFile} />
-              </Button>
-              <AddTransactionModal
-                addTransaction={this.addTransactionWrapper}
-                addTransactionStatus={addTransactionStatus}
-                floated='right'
-                sourceCurrencies={currencies}
-              />
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan='8'>
+                <Menu floated='right' pagination>
+                  <Menu.Item as='a' icon>
+                    <Icon name='chevron left' />
+                  </Menu.Item>
+                  <Menu.Item as='a'>1</Menu.Item>
+                  <Menu.Item as='a'>2</Menu.Item>
+                  <Menu.Item as='a'>3</Menu.Item>
+                  <Menu.Item as='a'>4</Menu.Item>
+                  <Menu.Item as='a' icon>
+                    <Icon name='chevron right' />
+                  </Menu.Item>
+                </Menu>
+                <Button
+                  floated='right'
+                  htmlFor='upload'
+                  icon
+                  labelPosition='left'
+                  primary size='large'
+                >
+                  <Icon name='upload' /> Import Transactions
+                  <input
+                      hidden
+                      id='upload'
+                      multiple
+                      type="file"
+                      onChange={this.onChangeFile} />
+                </Button>
+                <AddTransactionModal
+                  addTransaction={this.addTransactionWrapper}
+                  addTransactionStatus={addTransactionStatus}
+                  floated='right'
+                  sourceCurrencies={currencies}
+                />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        </Table>
+      </Container>
     )
   };
 };
