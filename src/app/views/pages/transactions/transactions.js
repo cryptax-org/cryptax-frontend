@@ -1,4 +1,4 @@
-import { Button, Container, Table, Header, Menu, Icon, Segment, Grid } from 'semantic-ui-react';
+import { Button, Container, Table, Header, Menu, Icon, Segment, Grid, Modal } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import groupBy from 'lodash/groupBy';
 import { Link, Redirect } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { currenciesThunks } from 'state/ducks/currencies';
 import styles from './transactions.scss';
 import { transactionsThunks } from 'state/ducks/transactions';
 import { withResponsiveWrapper } from 'enhancers';
+import { DeleteModal } from './delete-modal/deleteModal';
 
 export class Transactions extends Component {
   constructor(props) {
@@ -63,7 +64,9 @@ export class Transactions extends Component {
   };
 
   onDelete = transaction => {
-    console.log(transaction);
+    const { deleteTransaction, user } = this.props;
+
+    deleteTransaction(user.id, transaction.id);
   }
 
   render() {
@@ -140,18 +143,20 @@ export class Transactions extends Component {
                                   <Icon name='edit' />
                                 </Button.Content>
                               </Button>
-                              <Button
-                                animated='vertical'
-                                color='red'
-                                htmlFor='edit'
-                                onClick={() => this.onDelete(transaction)}
-                                size='mini'
-                              >
-                                <Button.Content hidden>Delete</Button.Content>
-                                <Button.Content visible>
-                                  <Icon name='delete' />
-                                </Button.Content>
-                              </Button>
+                              <DeleteModal
+                                deleteTransaction={() => this.onDelete(transaction)}>
+                                <Button
+                                  animated='vertical'
+                                  color='red'
+                                  htmlFor='edit'
+                                  size='mini'
+                                >
+                                  <Button.Content hidden>Delete</Button.Content>
+                                  <Button.Content visible>
+                                    <Icon name='delete' />
+                                  </Button.Content>
+                                </Button>
+                              </DeleteModal>
                             </Button.Group>
                           </Table.Cell>
                         </Table.Row>
@@ -191,9 +196,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getCurrencies: currenciesThunks.getCurrencies,
   addTransaction: transactionsThunks.addTransaction,
   addTransactionsFile: transactionsThunks.addTransactionsFile,
+  deleteTransaction: transactionsThunks.deleteTransaction,
+  getCurrencies: currenciesThunks.getCurrencies,
   getTransactions: transactionsThunks.getTransactions,
   resetAddTransactionStatus: transactionsThunks.resetAddTransactionStatus,
 };
