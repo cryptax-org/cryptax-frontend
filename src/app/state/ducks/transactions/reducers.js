@@ -15,6 +15,7 @@ const allReducer = createReducer([])({
   [types.GET_TRANSACTIONS_COMPLETED]: (state, action) => action.payload.data,
   [types.GET_TRANSACTIONS_FAILED]: () => [],
   [types.POST_TRANSACTION_COMPLETED]: (state, action) => [...state, action.payload.data],
+  [types.DELETE_TRANSACTION_COMPLETED]: (state, action) => state.filter(transaction => transaction.id != action.meta.transactionId),
   [types.LOGOUT]: () => [],
 });
 

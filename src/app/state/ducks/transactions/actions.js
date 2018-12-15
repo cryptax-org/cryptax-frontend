@@ -36,6 +36,17 @@ export const addTransactionsFile = (userId, transactionsFile, source) => {
   });
 };
 
+export const deleteTransaction = (userId, transactionId) => ({
+  type: types.DELETE_TRANSACTION,
+  meta: {
+    async: true,
+    blocking: true,
+    url: `/users/${userId}/transactions/${transactionId}`,
+    method: 'DELETE',
+    transactionId
+  }
+});
+
 export const resetAddTransactionStatus = () => ({
   type: types.POST_TRANSACTION_RESET_STATUS,
 });
