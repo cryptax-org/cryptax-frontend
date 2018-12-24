@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
 import React, { Component } from 'react';
 
-import { AddTransactionModal } from 'components';
+import { TransactionModal } from 'components';
 import { currenciesThunks } from 'state/ducks/currencies';
 import styles from './transactions.scss';
 import { transactionsThunks } from 'state/ducks/transactions';
@@ -59,8 +59,10 @@ export class Transactions extends Component {
     });
   };
 
-  onEdit = transaction => {
-    console.log(transaction);
+  updateTransactionWrapper = transaction => {
+    const { addTransaction, user } = this.props; // update
+
+    addTransaction(user.id, transaction);
   };
 
   onDelete = transaction => {
@@ -78,11 +80,15 @@ export class Transactions extends Component {
       <div>
         <Container className={styles.buttonsWrapper}>
           <Segment color="grey">
-            <AddTransactionModal
-              addTransaction={this.addTransactionWrapper}
-              addTransactionStatus={addTransactionStatus}
+            <TransactionModal
+              updateTransaction={this.addTransactionWrapper}
+              updateTransactionStatus={addTransactionStatus}
               sourceCurrencies={currencies}
-            />
+            >
+              <Button icon labelPosition='left' primary size='large'>
+                <Icon name='plus' /> Add Transaction Manually
+              </Button>
+            </TransactionModal>
             <Button
               as='label'
               floated='right'
@@ -104,7 +110,7 @@ export class Transactions extends Component {
 
         <Grid divided='vertically'>
           {Object.keys(orderedTransactions).map(exchange => (
-            <Grid.Row columns={1}>
+            <Grid.Row columns={1} key={exchange}>
               <Grid.Column>
                 <Container className={styles.exchange}>
                   <Header as='h1'>{exchange.toUpperCase()}</Header>
@@ -132,19 +138,26 @@ export class Transactions extends Component {
                           <Table.Cell>{transaction.currency2}</Table.Cell>
                           <Table.Cell collapsing>
                             <Button.Group size='tiny'>
-                              <Button
-                                animated='vertical'
-                                htmlFor='edit'
-                                onClick={() => this.onEdit(transaction)}
-                                size='mini'
+                              <TransactionModal
+                                updateTransaction={this.updateTransactionWrapper}
+                                updateTransactionStatus={addTransactionStatus}
+                                sourceCurrencies={currencies}
+                                initialTransaction={transaction}
                               >
-                                <Button.Content hidden>Edit</Button.Content>
-                                <Button.Content visible>
-                                  <Icon name='edit' />
-                                </Button.Content>
-                              </Button>
+                                <Button
+                                  animated='vertical'
+                                  htmlFor='edit'
+                                  size='mini'
+                                >
+                                  <Button.Content hidden>Edit</Button.Content>
+                                  <Button.Content visible>
+                                    <Icon name='edit' />
+                                  </Button.Content>
+                                </Button>
+                              </TransactionModal>
                               <DeleteModal
-                                deleteTransaction={() => this.onDelete(transaction)}>
+                                deleteTransaction={() => this.onDelete(transaction)}
+                              >
                                 <Button
                                   animated='vertical'
                                   color='red'

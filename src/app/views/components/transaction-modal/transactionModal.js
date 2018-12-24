@@ -5,7 +5,7 @@ import moment from 'moment';
 import PropTypes from "prop-types";
 import React, { Component } from 'react';
 
-import './addTransactionModal.scss';
+import './transactionModal.scss';
 
 import { PostTransactionEnum } from 'state/ducks/transactions';
 
@@ -38,14 +38,25 @@ class NestedModal extends Component {
 }
 
 NestedModal.propTypes = {
-  addTransactionStatus: PropTypes.number.isRequired,
+  updateTransactionStatus: PropTypes.number.isRequired,
 };
 
-class AddTransactionModal extends Component {
+class TransactionModal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    const { initialTransaction, sourceCurrencies } = props;
+
+    this.state = initialTransaction ? {
+      open: false,
+      date: initialTransaction.date,
+      price: initialTransaction.price,
+      quantity: initialTransaction.quantity,
+      currency1: sourceCurrencies.find(currency => currency.value === initialTransaction.currency1) || '',
+      currency2: sourceCurrencies.find(currency => currency.value === initialTransaction.currency2) || '',
+      searchResults: [],
+      currentFieldSearched: ''
+    } : {
       open: false,
       date: moment(),
       price: '',
@@ -73,7 +84,7 @@ class AddTransactionModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { addTransaction } = this.props;
+    const { updateTransaction } = this.props;
 
     const {
       date,
@@ -84,7 +95,7 @@ class AddTransactionModal extends Component {
       currency2,
     } = this.state;
 
-    addTransaction({
+    updateTransaction({
       date,
       type,
       price,
@@ -119,7 +130,7 @@ class AddTransactionModal extends Component {
   };
 
   render() {
-    const { floated, addTransactionStatus } = this.props;
+    const { updateTransactionStatus, children, initialTransaction } = this.props;
 
     const {
       open,
@@ -139,13 +150,9 @@ class AddTransactionModal extends Component {
         open={open}
         onOpen={this.open}
         onClose={this.close}
-        trigger={
-          <Button floated={floated} icon labelPosition='left' primary size='large'>
-            <Icon name='plus' /> Add Transaction Manually
-          </Button>
-        }
+        trigger={children}
       >
-        <Modal.Header>Add A Transaction</Modal.Header>
+        <Modal.Header>{initialTransaction ? "Modify Transaction" : "Add A Transaction"}</Modal.Header>
         <Modal.Content>
           <Form id={formName} size='large' onSubmit={this.handleSubmit}>
             <Form.Input
@@ -222,7 +229,7 @@ class AddTransactionModal extends Component {
             type='submit'
           />
           <NestedModal
-            addTransactionStatus={addTransactionStatus}
+            updateTransactionStatus={updateTransactionStatus}
           />
         </Modal.Actions>
       </Modal>
@@ -230,10 +237,16 @@ class AddTransactionModal extends Component {
   };
 };
 
-AddTransactionModal.propTypes = {
-  addTransaction: PropTypes.func.isRequired,
-  addTransactionStatus: PropTypes.number.isRequired,
+TransactionModal.propTypes = {
+  children: PropTypes.node,
+  updateTransaction: PropTypes.func.isRequired,
+  updateTransactionStatus: PropTypes.number.isRequired,
+  initialTransaction: PropTypes.object,
   sourceCurrencies: PropTypes.array.isRequired,
 };
 
-export default AddTransactionModal
+TransactionModal.defaultProps = {
+  initialTransaction: null,
+}
+
+export default TransactionModal
