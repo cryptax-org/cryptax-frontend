@@ -4,6 +4,7 @@ import {
   Header,
   Icon,
   Segment,
+  Label,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -36,6 +37,42 @@ const HomeHeader = ({ mobile }) => {
           Get Started
           <Icon name='right arrow' />
         </Button>
+        <Button
+          as='label'
+          floated='right'
+          icon
+          labelPosition='left'
+          primary size='large'
+        >
+          <Icon name='upload' /> Second test
+          <input
+              hidden
+              id='upload'
+              multiple
+              type="file"
+                />
+        </Button>
+
+        <Label
+          as='label'
+          basic
+        >
+          <Button
+              icon="upload"
+              label={{
+                  basic: true,
+                  content: 'Third test'
+              }}
+              labelPosition="right"
+          />
+          <input
+              hidden
+              id="upload"
+              multiple
+              type="file"
+          />
+      </Label>
+
       </Container>
     </Segment>
   )
